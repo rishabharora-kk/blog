@@ -1,0 +1,30 @@
+---
+title: "Title, plain and specific"
+subtitle: "One line that says what the reader gets. Optional."
+section: notes          # notes | essays  (sections are defined in _config.yml)
+date: 2026-01-01 09:00:00 +0530
+summary: >-
+  One or two sentences shown on the index and in the feed. Say what the piece
+  claims, not that it is interesting.
+---
+
+Open with the claim, not the context. The first sentence should be something
+that could be wrong.
+
+## What I expected
+
+State the prior you held before you looked. Be specific enough that the next
+section can contradict it.
+
+## What happened
+
+The evidence. Numbers, sources, what broke.
+
+## Where I was wrong
+
+The part with the most value in it. Do not skip this to look competent —
+it is the only section that proves the rest was checked.
+
+## What this changes
+
+The operational consequence. If there is none, say so.

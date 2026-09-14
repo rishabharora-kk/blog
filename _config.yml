@@ -1,0 +1,57 @@
+title: Rishabh Arora
+tagline: Notes on learning, systems, and what actually compounds.
+description: >-
+  Essays and notes on cognition, systems, strategy, and the craft of
+  thinking clearly — written to be verified, not admired.
+
+url: "https://rishabharora-kk.github.io"
+# This is a PROJECT repo (rishabharora-kk/kiki.github.io), not a user site --
+# a user site must be named exactly <username>.github.io. So the site serves
+# under a subpath and baseurl must match the repo name exactly.
+#
+#   rename repo to rishabharora-kk.github.io  ->  baseurl: ""
+#   rename repo to kiki                       ->  baseurl: "/kiki"
+#   custom domain                             ->  baseurl: "", set url:, add CNAME
+#
+# Get this wrong and every link and stylesheet on the site 404s.
+baseurl: "/kiki.github.io"
+
+author:
+  name: Rishabh Arora
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+
+permalink: /:title/
+timezone: Asia/Kolkata
+
+# Every post declares `section:` in its front matter. The index renders these
+# groups, in this order. Add a new section here and it appears on the index.
+sections:
+  - id: essays
+    label: Essays
+  - id: notes
+    label: Notes
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      section: notes
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - WRITING.md
+  - _posts/TEMPLATE.md.example
+  - README.md
+  - .jekyll-cache
+
+sass:
+  style: compressed

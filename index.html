@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<!-- Edit this intro freely. It is the only prose on the index. -->
+<div class="bio">
+  <p>
+    I write about how understanding actually works — cognition, systems,
+    incentives, and the difference between feeling competent and being
+    competent. Most of what is here started as something I got wrong.
+  </p>
+  <p>
+    Each piece states what I expected, what happened, and where I was
+    wrong. If a claim here cannot be checked, treat it as decoration.
+  </p>
+</div>
+
+{% for s in site.sections %}
+  {% assign entries = site.posts | where: "section", s.id %}
+  {% if entries.size > 0 %}
+  <section class="section">
+    <h2>{{ s.label }}</h2>
+    <ol class="entries" reversed>
+      {% for post in entries %}
+      <li>
+        <a class="entry-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="entry-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %Y" }}</time>
+          {% if post.subtitle %} &middot; {{ post.subtitle }}{% endif %}
+        </span>
+        {% if post.summary %}<p class="entry-summary">{{ post.summary }}</p>{% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+  {% endif %}
+{% endfor %}
+
+{% if site.posts.size == 0 %}
+  <section class="section">
+    <p class="empty">Nothing published yet.</p>
+  </section>
+{% endif %}

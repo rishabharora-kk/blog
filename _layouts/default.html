@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title and page.url != "/" %}{{ page.title }} &middot; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+<meta name="description" content="{{ page.summary | default: site.description | strip_newlines | truncate: 200 }}">
+<meta name="author" content="{{ site.author.name }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+
+<meta property="og:type" content="{% if page.date %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{{ page.title | default: site.title }}">
+<meta property="og:description" content="{{ page.summary | default: site.description | strip_newlines | truncate: 200 }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+    <p class="tagline">{{ site.tagline }}</p>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer class="foot">
+    <span>&copy; {{ site.time | date: "%Y" }} {{ site.author.name }}</span>
+    <span>
+      <a href="{{ '/feed.xml' | relative_url }}">Feed</a> &middot;
+      <a href="https://github.com/rishabharora-kk/kiki.github.io">Source</a>
+    </span>
+  </footer>
+
+</div>
+</body>
+</html>
