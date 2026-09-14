@@ -10,16 +10,16 @@ summary: >-
   a working day generated any learning at all.
 ---
 
+An operator's value is bounded above by their capacity to verify their tools' output. Below that bound, a more powerful tool amplifies errors at exactly the rate it amplifies successes, and the expected gain from an arbitrarily strong generator is zero.
+
+That bound is not obvious from inside, because the instrument people use to check it — the felt sense of moving fast — has been measured, and it is inverted.
+
 <nav class="toc" markdown="1">
 #### Contents
 {:.no_toc}
 * placeholder
 {:toc}
 </nav>
-
-An operator's value is bounded above by their capacity to verify their tools' output. Below that bound, a more powerful tool amplifies errors at exactly the rate it amplifies successes, and the expected gain from an arbitrarily strong generator is zero.
-
-That bound is not obvious from inside, because the instrument people use to check it — the felt sense of moving fast — has been measured, and it is inverted.
 
 ## The two obvious answers
 

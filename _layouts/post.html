@@ -29,6 +29,83 @@ layout: default
 </article>
 
 <script>
+/* Footnote popovers. Progressive enhancement only: with JavaScript off the
+   markers stay ordinary anchors and still jump to the endnote, which is why
+   nothing here rewrites the markup the page shipped with.
+
+   Reading a citation should not cost you your place. Hover or focus on a
+   pointer device, tap on a touch device; Escape or an outside click closes. */
+(function () {
+  var notes = {};
+  document.querySelectorAll('.footnotes li[id]').forEach(function (li) {
+    var c = li.cloneNode(true);
+    c.querySelectorAll('a[role="doc-backlink"]').forEach(function (b) { b.remove(); });
+    notes[li.id] = c.innerHTML.trim();
+  });
+  if (!Object.keys(notes).length) return;
+
+  var pop = document.createElement('div');
+  pop.className = 'fn-pop';
+  pop.setAttribute('role', 'tooltip');
+  pop.hidden = true;
+  document.body.appendChild(pop);
+
+  var open = null;
+
+  function hide() { pop.hidden = true; open = null; }
+
+  function show(link) {
+    var id = decodeURIComponent((link.getAttribute('href') || '').slice(1));
+    if (!notes[id]) return;
+    pop.innerHTML = notes[id];
+    pop.hidden = false;
+    open = link;
+
+    // Measure after paint, then clamp inside the viewport so the popover
+    // never becomes the thing that makes the page scroll sideways.
+    var r = link.getBoundingClientRect();
+    var margin = 12;
+    var w = Math.min(pop.offsetWidth, document.documentElement.clientWidth - margin * 2);
+    pop.style.width = w + 'px';
+    var left = r.left + r.width / 2 - w / 2;
+    left = Math.max(margin, Math.min(left, document.documentElement.clientWidth - w - margin));
+    var top = r.bottom + window.scrollY + 8;
+    // Flip above the marker when there is no room below.
+    if (r.bottom + pop.offsetHeight + 24 > window.innerHeight && r.top > pop.offsetHeight) {
+      top = r.top + window.scrollY - pop.offsetHeight - 8;
+    }
+    pop.style.left = left + 'px';
+    pop.style.top = top + 'px';
+  }
+
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  document.querySelectorAll('a.footnote').forEach(function (link) {
+    if (fine) {
+      link.addEventListener('mouseenter', function () { show(link); });
+      link.addEventListener('mouseleave', function (e) {
+        if (!pop.contains(e.relatedTarget)) hide();
+      });
+      link.addEventListener('focus', function () { show(link); });
+      link.addEventListener('blur', hide);
+    } else {
+      // Touch: first tap reveals, second follows the link to the endnote.
+      link.addEventListener('click', function (e) {
+        if (open !== link) { e.preventDefault(); show(link); }
+      });
+    }
+  });
+
+  pop.addEventListener('mouseleave', hide);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
+  document.addEventListener('click', function (e) {
+    if (open && !pop.contains(e.target) && e.target !== open) hide();
+  });
+  window.addEventListener('resize', hide);
+})();
+</script>
+
+<script>
 /* Let wide tables scroll on their own instead of breaking the page. */
 document.querySelectorAll('.prose table').forEach(function (t) {
   if (t.parentElement.classList.contains('table-scroll')) return;

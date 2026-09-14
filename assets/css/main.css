@@ -510,3 +510,37 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
   .toc { background: none; border: 1px solid #bbb; }
   .prose a.footnote { color: #000; }
 }
+
+/* --- footnote popover ------------------------------------------ */
+
+/* Shown on hover/focus/tap by the script in the post layout. Without
+   JavaScript it never appears and the markers behave as plain anchors. */
+.fn-pop {
+  position: absolute;
+  z-index: 20;
+  max-width: 30rem;
+  width: max-content;
+  padding: 0.85rem 1rem;
+  background: var(--raised);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10), 0 1px 2px rgba(0, 0, 0, 0.06);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.fn-pop p { margin: 0; }
+.fn-pop a { color: var(--accent); }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .fn-pop {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* The jump is the fallback, so make it land gently rather than teleport. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+@media print { .fn-pop { display: none; } }
