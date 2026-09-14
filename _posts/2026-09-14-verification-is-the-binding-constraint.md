@@ -10,6 +10,13 @@ summary: >-
   a working day generated any learning at all.
 ---
 
+<nav class="toc" markdown="1">
+#### Contents
+{:.no_toc}
+* placeholder
+{:toc}
+</nav>
+
 An operator's value is bounded above by their capacity to verify their tools' output. Below that bound, a more powerful tool amplifies errors at exactly the rate it amplifies successes, and the expected gain from an arbitrarily strong generator is zero.
 
 That bound is not obvious from inside, because the instrument people use to check it — the felt sense of moving fast — has been measured, and it is inverted.
@@ -26,8 +33,8 @@ Both are checkable against public data. Both fail, and they fail in the same dir
 
 Reported figures, from compensation aggregators and public filings. Treat them as order-of-magnitude rather than precise, and check the links at the end.
 
-- Anthropic's reported band runs from roughly **$199K** total compensation at the low end (Trust and Safety) to about **$1.27M** at the high end (staff-level software engineer). Federal H-1B filings reported base salaries of **$1.12M–$1.38M** for people titled *Member of Technical Staff* — base cash, before equity.
-- OpenAI: Research Scientist total compensation reported around **$763K (L4) to ~$1.39M (L5)**, median package around **$1.25M**; base bands for Member of Technical Staff (Research) around **$245K–$685K**. Senior retention grants have been reported in the **$5M–$20M/yr** range.
+- Anthropic's reported band runs from roughly **$199K** total compensation at the low end (Trust and Safety) to about **$1.27M** at the high end (staff-level software engineer). Federal H-1B filings reported base salaries of **$1.12M–$1.38M** for people titled *Member of Technical Staff* — base cash, before equity.[^anthropic-comp]
+- OpenAI: Research Scientist total compensation reported around **$763K (L4) to ~$1.39M (L5)**, median package around **$1.25M**; base bands for Member of Technical Staff (Research) around **$245K–$685K**. Senior retention grants have been reported in the **$5M–$20M/yr** range.[^openai-comp]
 - Both converge on the same title architecture — *Member of Technical Staff*, *Research Engineer*, *Research Scientist* — with engineering and research on one ladder.
 
 The top number is the least informative part. The signal is the **ratio**: roughly 6x between the low and high band inside a single company. A spread that wide is not tracking seniority, and it is not tracking how hard the labor is. It tracks **irreducibility** — how badly the work resists being specified in advance.
@@ -38,19 +45,19 @@ The cheap end of the band is work that can be described before it is done. The e
 
 From Anthropic's careers page:
 
-> "We care about what you can do, not where you learned to do it. About half our technical staff had no prior ML experience; about half have PhDs, but plenty of brilliant colleagues never went to college. **If you've done interesting independent research, written a thoughtful blog post, or contributed to open source, put that at the top of your resume.**"
+> "We care about what you can do, not where you learned to do it. About half our technical staff had no prior ML experience; about half have PhDs, but plenty of brilliant colleagues never went to college. **If you've done interesting independent research, written a thoughtful blog post, or contributed to open source, put that at the top of your resume.**"[^anthropic-careers]
 
-> "Engineers here do lots of research, and researchers do lots of engineering... All our papers have engineers as authors, often as first author."
+> "Engineers here do lots of research, and researchers do lots of engineering... All our papers have engineers as authors, often as first author."[^anthropic-careers]
 
 From a Research Engineer / Alignment posting, under *Candidates need not have*:
 
-> "100% of the skills needed to perform the job. Formal certifications or education credentials."
+> "100% of the skills needed to perform the job. Formal certifications or education credentials."[^anthropic-re-alignment]
 
-The *good fit* list from that posting, in its order: significant software, ML, or research engineering experience; contributing to empirical AI research; familiarity with technical AI safety research; prefers fast-moving collaborative projects to extensive solo efforts; picks up slack even if it goes outside the job description; cares about the impacts of AI.
+The *good fit* list from that posting, in its order: significant software, ML, or research engineering experience; contributing to empirical AI research; familiarity with technical AI safety research; prefers fast-moving collaborative projects to extensive solo efforts; picks up slack even if it goes outside the job description; cares about the impacts of AI.[^anthropic-re-alignment]
 
 From OpenAI's Research Engineer page:
 
-> "We're looking for people with solid engineering skills (for example designing, implementing, and improving a massive-scale distributed machine learning system), writing bug-free machine learning code, and building the science behind the algorithms employed... engineers who are comfortable working in large distributed systems."
+> "We're looking for people with solid engineering skills (for example designing, implementing, and improving a massive-scale distributed machine learning system), writing bug-free machine learning code, and building the science behind the algorithms employed... engineers who are comfortable working in large distributed systems."[^openai-re]
 
 ### Decoding the postings
 
@@ -66,9 +73,9 @@ Job-post prose, translated into the capability being purchased. This column is i
 | "picks up slack outside the job description" | Agency without a specification |
 | "no credentials required; put independent research at the top" | Artifacts are the currency; credentials are an explicitly discounted fallback |
 
-**Interview gates are gates, not the game.** Data structures and live coding are not a typing test and not a proxy for productivity. They are an unplugged verifier test: with the oracle removed, is there an internal model of the machine, and can a system be held in working memory and reasoned about? That is why hand-writing code is the measurement instrument — it is the only way to observe from outside whether the internal model exists. It is a floor, not a ceiling, and clearing a pass/fail gate cheaply is correct strategy rather than something to resent. It is also not where the compensation is.
+**Interview gates are gates, not the game.** Data structures and live coding are not a typing test and not a proxy for productivity. They are an unplugged verifier test: with the oracle removed, is there an internal model of the machine, and can a system be held in working memory and reasoned about? That is why hand-writing code is the measurement instrument — it is the only way to observe from outside whether the internal model exists. It is a floor, not a ceiling, and clearing a pass/fail gate cheaply is correct strategy rather than something to resent. It is also not where the compensation is.[^interview-gate]
 
-**The trajectory points at verification.** Anthropic has reported evaluating whether a model's proposed next experimental step beats the human researcher's, and states it reaches parity in a substantial fraction of real research sessions. Generation of research *steps* is being absorbed. What stays scarce inside the lab is what is scarce in any individual workflow: someone who can tell whether the machine's output is right, and who decides what should be attempted at all.
+**The trajectory points at verification.** Anthropic has reported evaluating whether a model's proposed next experimental step beats the human researcher's, and states it reaches parity in a substantial fraction of real research sessions.[^anthropic-rsi] Generation of research *steps* is being absorbed. What stays scarce inside the lab is what is scarce in any individual workflow: someone who can tell whether the machine's output is right, and who decides what should be attempted at all.
 
 ## Three absences, and why the innermost one is invisible
 
@@ -78,23 +85,23 @@ Stagnation inside a high-activity workflow is not a defect in what is present. I
 
 Reading correct code and producing it are distinct capacities. Recognition is cued retrieval against a stored trace; production is free recall plus construction. Recognition is systematically easier, and it is the standard source of overconfidence, because the phenomenology of *yes, that's right* is nearly identical to the phenomenology of *I could have written that*. It is possible to read a language one cannot speak.
 
-The consequence is a working ceiling equal to the model's ceiling, with the operator's judgment contributing nothing. In a market where everyone holds the same model, that is a commodity position with no growth term.
+The consequence is a working ceiling equal to the model's ceiling, with the operator's judgment contributing nothing.[^skill-atrophy] In a market where everyone holds the same model, that is a commodity position with no growth term.
 
 ### The instrument is broken, which hides the first absence
 
-The brain uses **fluency as a heuristic cue for understanding**. Information that arrives smoothly is judged better-understood than information that arrives with effort, independent of actual comprehension. AI output is maximally fluent, so it maximally triggers the false cue. This is the machinery behind the illusion of explanatory depth — people confidently report understanding how a bicycle or a zipper works until asked to draw one.
+The brain uses **fluency as a heuristic cue for understanding**. Information that arrives smoothly is judged better-understood than information that arrives with effort, independent of actual comprehension. AI output is maximally fluent, so it maximally triggers the false cue. This is the machinery behind the illusion of explanatory depth — people confidently report understanding how a bicycle or a zipper works until asked to draw one.[^unsourced-fluency]
 
-The industrial-scale version is the part worth internalizing precisely. In METR's randomized controlled trial, experienced open-source developers working on real tasks in their own repositories were **19% slower** with frontier AI tools. They had forecast a 24% speedup beforehand. Afterwards — having personally lived through the slowdown — they estimated they had been sped up by **20%**. The belief survived direct experience of the opposite.
+The industrial-scale version is the part worth internalizing precisely. In METR's randomized controlled trial, experienced open-source developers working on real tasks in their own repositories were **19% slower** with frontier AI tools. They had forecast a 24% speedup beforehand. Afterwards — having personally lived through the slowdown — they estimated they had been sped up by **20%**. The belief survived direct experience of the opposite.[^metr]
 
-The structure of that result matters more than the headline. It does not show that AI does not help; METR was explicit on that point, and different tasks, workflows, and models can and do differ. The transferable finding is narrower and less comfortable: **the subjective sense of speed is not a measurement of speed, and it does not correct itself through experience.** The feeling is generated by the smoothness of the interaction, not by the throughput.
+The structure of that result matters more than the headline. It does not show that AI does not help; METR was explicit on that point, and different tasks, workflows, and models can and do differ. The transferable finding is narrower and less comfortable: **the subjective sense of speed is not a measurement of speed, and it does not correct itself through experience.** The feeling is generated by the smoothness of the interaction, not by the throughput.[^perception-gap]
 
-The name for the surrounding state is **metacognitive laziness**: fluent answers remove the difficulty signals that normally trigger self-monitoring, so verification stops being invoked at all. Anyone citing a feeling of efficiency as evidence that their method works is citing the one reading they are not licensed to trust.
+The name for the surrounding state is **metacognitive laziness**: fluent answers remove the difficulty signals that normally trigger self-monitoring, so verification stops being invoked at all. Anyone citing a feeling of efficiency as evidence that their method works is citing the one reading they are not licensed to trust.[^metacog-laziness]
 
 ### There is no loss function
 
 Learning requires an error signal with teeth. There are three sources of teeth: reality breaks something, other people judge it, or a prior commitment is contradicted. A tool-saturated solo workflow removes all three.
 
-- **Reality.** The tool patches over gaps before they manifest as failures, so not knowing costs nothing locally. The bill is deferred and accrues as *cognitive debt* — code produced faster than comprehension of it, until no one can say what the program does or how to change it safely.
+- **Reality.** The tool patches over gaps before they manifest as failures, so not knowing costs nothing locally. The bill is deferred and accrues as *cognitive debt* — code produced faster than comprehension of it, until no one can say what the program does or how to change it safely.[^cognitive-debt]
 - **Other people.** Nothing made is exposed to anyone with standing to call it bad.
 - **Commitment.** Nothing is predicted before it is observed, so nothing can be surprising — and surprise is the only free source of labels.
 
@@ -110,15 +117,15 @@ Two claims, both true, and the tension between them is where the leverage is.
 
 **The boredom misattributes the cause.** The conclusion usually drawn is *manual practice is redundant*. The supported reading is *instruction-following is redundant*. These feel identical from inside and are opposite in consequence. What made tutorials dead was the absence of falsification — and the absence of falsification is also what characterizes tool-saturated work. The common move is to flee one zero-feedback environment into a second zero-feedback environment with better aesthetics. That is why the stagnation follows.
 
-The underlying mechanism says which lever works. Dopaminergic signalling encodes **reward prediction error** — the difference between expectation and outcome — not reward magnitude. Applied to learning, the operative quantity is *learning progress*: the rate of change of competence, not its level. Intrinsically-motivated agents built on this principle abandon a task the moment the derivative flattens, regardless of the absolute value of the skill. This is the standard architecture of curiosity-driven learning and a well-documented account of human boredom.
+The underlying mechanism says which lever works. Dopaminergic signalling encodes **reward prediction error** — the difference between expectation and outcome — not reward magnitude. Applied to learning, the operative quantity is *learning progress*: the rate of change of competence, not its level. Intrinsically-motivated agents built on this principle abandon a task the moment the derivative flattens, regardless of the absolute value of the skill. This is the standard architecture of curiosity-driven learning and a well-documented account of human boredom.[^unsourced-rpe]
 
 Which means the problem is not insufficient discipline, and resolve will not fix it. Resolve does not change a reward schedule; it spends finite willpower fighting one, a losing trade on any horizon longer than a few weeks. The intervention has to change the **information geometry of the task** so that the derivative of *visible* competence stays high.
 
 Three calibration points, because the reverse error is available and real.
 
-**Difficulty must be desirable, not merely present.** Difficulty aids long-term retention while hurting short-term performance — generation over reading, testing over review, varied over blocked practice. But this reverses when working memory is already saturated: with high element-interactivity material and no scaffolding, added difficulty is *undesirable* and produces load and nothing else. The target is the region where failure happens roughly a third of the time — enough to generate signal, not so much that the signal is noise.
+**Difficulty must be desirable, not merely present.** Difficulty aids long-term retention while hurting short-term performance — generation over reading, testing over review, varied over blocked practice.[^bjork] But this reverses when working memory is already saturated: with high element-interactivity material and no scaffolding, added difficulty is *undesirable* and produces load and nothing else.[^undesirable-difficulty] The target is the region where failure happens roughly a third of the time — enough to generate signal, not so much that the signal is noise.
 
-**AI output is a worked example, which is the right scaffold at the wrong moment.** For a genuine novice, a complete worked solution beats problem-solving; that is the worked-example effect, and it means the intuition that AI-assisted work teaches *something* is not baseless. But the effect reverses with expertise, and a *complete* example is inferior to an **incomplete** one. Examples with steps deliberately removed, which the learner must supply, produce better self-explanation and better transfer. That is the whole fix, stated technically: do not stop using worked examples — delete parts of them before reading, and supply the deletions.
+**AI output is a worked example, which is the right scaffold at the wrong moment.** For a genuine novice, a complete worked solution beats problem-solving; that is the worked-example effect, and it means the intuition that AI-assisted work teaches *something* is not baseless.[^worked-example] But the effect reverses with expertise, and a *complete* example is inferior to an **incomplete** one. Examples with steps deliberately removed, which the learner must supply, produce better self-explanation and better transfer.[^worked-example] That is the whole fix, stated technically: do not stop using worked examples — delete parts of them before reading, and supply the deletions.
 
 **Surprise is the fuel.** The highest-density source of reward prediction error available to a learner is being wrong about something just committed to. Prediction-before-observation converts every observation into a labeled error signal. It manufactures consequence out of nothing, generates the surprise that *is* the reward being chased, and measures calibration as a free side effect. It also restores the structure boredom needs: a game has an opponent and a scoreboard, and prediction supplies both.
 
@@ -142,7 +149,7 @@ Capability commoditizes from the bottom of the abstraction stack upward. Each la
 
 The intuition that hand-writing code is a bad investment is **correct about the bottom three layers**. It is a sound read of the trajectory. The error is concluding there is therefore nothing to invest in. There is; it sits above the waterline, and it is reachable by neither the tutorial route nor the pure-delegation route.
 
-This is also what happens as models improve. The scarce complement to a stronger generator is never a better generator — it is a better **discriminator**. Generation is being supplied at collapsing marginal cost. Discrimination is not. The 6x compensation ratio, the job-post language about knowing *why* systems behave as they do, and labs measuring research taste because it is the remaining bottleneck all point the same way.
+This is also what happens as models improve. The scarce complement to a stronger generator is never a better generator — it is a better **discriminator**. Generation is being supplied at collapsing marginal cost. Discrimination is not. The 6x compensation ratio, the job-post language about knowing *why* systems behave as they do, and labs measuring research taste because it is the remaining bottleneck all point the same way.[^taste]
 
 ### Why the discriminator requires having been a generator
 
@@ -208,7 +215,7 @@ Take something the tool built recently and that you understand in the recognitio
 
 Start with deletions small enough to succeed about two times in three. Grow the deletion until that ratio holds again.
 
-This is the incomplete-worked-example effect: generation rather than review, which is the strongest desirable difficulty, scoped so working memory is not saturated, which is what keeps the difficulty desirable rather than merely painful. The verdict is mechanical and instant.
+This is the incomplete-worked-example effect: generation rather than review, which is the strongest desirable difficulty, scoped so working memory is not saturated, which is what keeps the difficulty desirable rather than merely painful.[^generation-effect] The verdict is mechanical and instant.
 
 *Instrumentation:* deletion size reliably restorable, and time to restore. Both are numbers and both move weekly. This is the loop that puts a visible derivative on the missing capability — precisely what was absent when tutorials went flat.
 
@@ -252,7 +259,7 @@ Three consequences.
 2. **An unpublished artifact has a multiplier of zero.** The quality of the work does not matter. Unexposed work generates no network effect and no external error-correction. Which is why Exposure is non-negotiable despite being the loop that gets skipped.
 3. **The compounding layer and the hiring layer are the same layer.** Independent research, a thoughtful blog post, open-source contributions, at the top of the resume, credentials explicitly discounted — the thing that compounds *is* the thing that gets people hired. That convergence is rare and worth exploiting.
 
-One concrete route: Anthropic runs a **Fellows Program**, with tracks including AI Safety and Security, ML Systems and Reinforcement Learning, and Economics and Policy — a structured entry that selects on demonstrated capability rather than credentials. They state they do not run internships, and permit re-application after 12 months.
+One concrete route: Anthropic runs a **Fellows Program**, with tracks including AI Safety and Security, ML Systems and Reinforcement Learning, and Economics and Policy — a structured entry that selects on demonstrated capability rather than credentials. They state they do not run internships, and permit re-application after 12 months.[^anthropic-fellows]
 
 On distance, without encouragement: the gap between no shipped work and no published reasoning, on one side, and a frontier-lab research role on the other, is large, and it is measured in years of these loops rather than months. But the *shape* of the gap is favorable, and shape matters more than size. It is not credentialist, not political, and not gated behind anything that cannot be started today. It is a production gap, and production gaps close monotonically under a working loop. What is missing is one habit — the testing habit — and a habit is installable in a way a talent is not.
 
@@ -309,6 +316,27 @@ The moves, in reusable form.
 ## One sentence
 
 Optimizing unlabeled output rate produces fluency and no movement. Invert it — optimize labeled error rate, keep every tool, relocate pride from the tool to the detector, and publish the residue.
+
+[^anthropic-comp]: *Anthropic Salaries* and related compensation write-ups. The reported $199K–$1.27M total-compensation band and the $1.12M–$1.38M H-1B base-salary filings. [levels.fyi](https://www.levels.fyi/companies/anthropic/salaries), [levels.fyi (SWE)](https://www.levels.fyi/companies/anthropic/salaries/software-engineer), [Metaintro](https://www.metaintro.com/blog/anthropic-1-3-million-ai-roles-salary-2026), [CTAIO](https://ctaio.dev/en/salary/anthropic-salary/)
+[^openai-comp]: *OpenAI Salaries* and related compensation write-ups. The Research Scientist and Member of Technical Staff bands and the reported retention-grant range. [levels.fyi](https://www.levels.fyi/companies/openai/salaries), [JobsByCulture](https://jobsbyculture.com/blog/openai-compensation-2026), [CTAIO](https://ctaio.dev/en/salary/openai-salary/), [Entrepreneur](https://www.entrepreneur.com/business-news/how-much-openai-employees-make-salaries-685000)
+[^anthropic-careers]: *Careers*, Anthropic. Source of the two block quotes on hiring for demonstrated ability over credentials and on engineers doing research. [anthropic.com/careers](https://www.anthropic.com/careers)
+[^anthropic-re-alignment]: *Research Engineer / Scientist, Alignment*, Anthropic (Greenhouse). Source of the "candidates need not have" quote and the "good fit" list. [job-boards.greenhouse.io](https://job-boards.greenhouse.io/anthropic/jobs/4631822008)
+[^openai-re]: *Research Engineer*, OpenAI. Source of the quoted description of the role. [openai.com/careers](https://openai.com/careers/research-engineer)
+[^interview-gate]: Sundeep Teki, *Anthropic Research Engineer Interview 2026*. Account of the data-structures/live-coding interview process referenced in the discussion of interview gates. [sundeepteki.org](https://www.sundeepteki.org/advice/anthropic-research-engineer-interview-2026)
+[^anthropic-rsi]: *When AI builds itself*, Anthropic. The claim that a model's proposed next experimental step reaches parity with a human researcher's in a substantial fraction of sessions. [anthropic.com/institute](https://www.anthropic.com/institute/recursive-self-improvement)
+[^taste]: Wenbo Pan, *Taste Is the Next Capability AI Will Crack*. Discussion of research taste as the remaining, measured bottleneck. [wenbo.io](https://www.wenbo.io/blog/taste-scaling/)
+[^skill-atrophy]: *The Skill Atrophy Trap*, TianPan.co, and *A Review of the Negative Effects of Digital Technology on Cognition* (arXiv). The claim that unassisted judgment stalls at a ceiling set by the tool rather than the operator. [tianpan.co](https://tianpan.co/blog/2026-04-19-skill-atrophy-ai-augmented-engineering), [arXiv](https://arxiv.org/pdf/2603.10025)
+[^metr]: METR, *Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity*, and *AI Coding Tools Made Developers 19% Slower*. The 19% slowdown, the 24% forecast and the 20% post-hoc estimate. [metr.org](https://metr.org/blog/2026-02-24-uplift-update/), [letsdatascience.com](https://letsdatascience.com/blog/developers-thought-ai-made-them-faster-the-data-said-otherwise)
+[^perception-gap]: *The Vibe-Check Protocol: Quantifying Cognitive Offloading in AI Programming* and *Using Biometrics to Understand AI-Assisted Coding Performance and its Perception* (both arXiv). Evidence that perceived speed and measured speed diverge and do not converge with experience. [arXiv (Vibe-Check)](https://arxiv.org/pdf/2601.02410), [arXiv (Biometrics)](https://arxiv.org/pdf/2606.20598)
+[^metacog-laziness]: **Approximate support.** The term is used here for a mechanism the cited paper describes rather than names. *Mitigating "Epistemic Debt" in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts* (arXiv). Source for the term and mechanism of metacognitive laziness under fluent AI output. [arXiv](https://arxiv.org/html/2602.20206v2)
+[^cognitive-debt]: **Approximate support.** A conceptual match rather than the paper's own terminology. *Mitigating "Epistemic Debt" in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts* (arXiv) and *AI-overdependence and human cognitive decline* (ScienceDirect). Support for the cognitive-debt framing of comprehension deferred past the point of production. [arXiv](https://arxiv.org/html/2602.20206v2), [ScienceDirect](https://www.sciencedirect.com/science/article/pii/S2451958826001764)
+[^bjork]: Metcalfe & Bjork, *Desirable Difficulties and Studying in the Region of Proximal Learning*. The retention-vs-performance tradeoff across generation, testing and varied practice. [columbia.edu](https://www.columbia.edu/cu/psychology/metcalfe/PDFs/Metcalfe-BjorkVolSubmitFeb14Final.pdf)
+[^undesirable-difficulty]: *Undesirable Difficulty Effects in the Learning of High-Element-Interactivity Materials* (PMC). The reversal of desirable difficulty when working memory is already saturated. [ncbi.nlm.nih.gov](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6099118/)
+[^worked-example]: *Desirable difficulties, worked examples, and completion problems*, Frontiers in Psychology. The worked-example effect for novices and its reversal toward incomplete/completion examples with expertise. [frontiersin.org](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2019.01623/xml)
+[^generation-effect]: *The Generation Effect*, Structural Learning. Support for generation over review as the stronger desirable difficulty. [structural-learning.com](https://www.structural-learning.com/post/generation-effect-active-learning)
+[^anthropic-fellows]: *Anthropic Fellows Program*, Anthropic (Greenhouse). Source for the program's tracks, its selection on demonstrated capability, and the no-internships/12-month reapplication terms. [job-boards.greenhouse.io](https://job-boards.greenhouse.io/anthropic/jobs/5023394008)
+[^unsourced-fluency]: **No source given.** Fluency as a cue for judged understanding, and the illusion of explanatory depth, are reported here from the general literature; no paper in this piece's source list establishes either. Treat both as inference until they carry a citation. The argument does not rest on them alone — the METR result is the checkable version of the same claim.
+[^unsourced-rpe]: **No source given.** The reward-prediction-error account of boredom, and the learning-progress framing of curiosity-driven agents, are asserted from background literature that is not in this piece's source list. Treat this paragraph as inference. It motivates the design of the loops below; it is not evidence for them.
 
 ---
 

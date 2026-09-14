@@ -413,3 +413,100 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
 .colophon a:hover { color: var(--accent); }
 
 @media print { .colophon { font-style: normal; } }
+
+/* --- contents -------------------------------------------------- */
+
+/* Inline, above the piece. Deliberately NOT a sticky sidebar: the
+   one-column rule holds, and a rail that tracks your scroll position
+   is a reading-progress bar wearing a different hat. */
+.toc {
+  margin: 0 0 3rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--raised);
+  border-radius: 8px;
+}
+.toc h4 {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--ink-faint);
+}
+.toc ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* Two columns where there is room; one on a phone. */
+  columns: 2;
+  column-gap: 2rem;
+}
+.toc li {
+  margin: 0 0 0.4rem;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  break-inside: avoid;
+}
+.toc a {
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+.toc a:hover { color: var(--accent); text-decoration: underline; }
+
+@media (max-width: 34rem) {
+  .toc { columns: 1; padding: 1.1rem 1.2rem; margin-bottom: 2.25rem; }
+  .toc ul { columns: 1; }
+}
+
+/* --- footnotes ------------------------------------------------- */
+
+/* Superscript markers that do not disturb the line's rhythm. */
+.prose sup[role="doc-noteref"],
+.prose a.footnote {
+  font-variant-numeric: normal;
+}
+.prose a.footnote {
+  text-decoration: none;
+  color: var(--accent);
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 0 0.1em;
+}
+.prose a.footnote:hover { text-decoration: underline; }
+
+/* Anchored jumps land below the viewport edge rather than flush to it. */
+.prose li[role="doc-endnote"],
+.prose h2, .prose h3 { scroll-margin-top: 1.5rem; }
+
+.prose .footnotes {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.prose .footnotes ol { padding-left: 1.35rem; }
+.prose .footnotes li { margin-bottom: 0.7rem; }
+.prose .footnotes li::marker { color: var(--ink-faint); }
+.prose .footnotes p { margin: 0; }
+.prose .footnotes a[role="doc-backlink"] {
+  text-decoration: none;
+  color: var(--ink-faint);
+  padding-left: 0.2em;
+}
+.prose .footnotes a[role="doc-backlink"]:hover { color: var(--accent); }
+
+/* A footnote you have jumped to is briefly marked, so you can find it. */
+.prose .footnotes li:target {
+  background: var(--mark);
+  border-radius: 4px;
+  padding: 0.35rem 0.6rem;
+  margin-left: -0.6rem;
+}
+
+@media print {
+  .toc { background: none; border: 1px solid #bbb; }
+  .prose a.footnote { color: #000; }
+}

@@ -23,6 +23,9 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
   hard_wrap: false
+  # Contents blocks list sections only. Including h3 turns a long essay's
+  # table of contents into a second copy of the essay.
+  toc_levels: 1..2
 
 permalink: /:title/
 timezone: Asia/Kolkata
