@@ -81,27 +81,29 @@ assets/css/main.css        all the styling, ~300 lines, no framework
 
 ## Deployment
 
-This repo is `rishabharora-kk/kiki.github.io`. Despite the name it is a
-**project** repo, not a GitHub user site -- a user site must be named exactly
-`<username>.github.io`. So the site serves under a subpath:
+This repo is `rishabharora-kk/blog`. It is a **project** repo, not a GitHub user
+site -- a user site must be named `<username>.github.io` exactly. So the site
+serves under a subpath:
 
 ```
-https://rishabharora-kk.github.io/kiki.github.io/
+https://rishabharora-kk.github.io/blog/
 ```
 
-and `baseurl` in `_config.yml` must match the repo name exactly. If you rename
-the repo, change `baseurl` in the same commit or every link and stylesheet 404s:
+and `baseurl` in `_config.yml` must match the repo name exactly. **If you rename
+the repo, change `baseurl` in the same commit** or every link and stylesheet
+404s, silently:
 
 | Repo name | baseurl | Serves at |
 |---|---|---|
+| `blog` (current) | `"/blog"` | `https://rishabharora-kk.github.io/blog/` |
+| `notes` | `"/notes"` | `https://rishabharora-kk.github.io/notes/` |
 | `rishabharora-kk.github.io` | `""` | `https://rishabharora-kk.github.io/` |
-| `kiki` | `"/kiki"` | `https://rishabharora-kk.github.io/kiki/` |
-| `kiki.github.io` (current) | `"/kiki.github.io"` | `https://rishabharora-kk.github.io/kiki.github.io/` |
 
-One-time setup, by hand: **Settings -> Pages -> Source: Deploy from a branch ->
-`main` / `(root)`.** A workflow cannot enable Pages for you -- creating a Pages
-site needs repo-admin rights that `GITHUB_TOKEN` does not have at any permission
-level. After that, pushing to `main` rebuilds the site.
+Pages setup is one manual step: **Settings -> Pages -> Source: Deploy from a
+branch -> `main` / `(root)`.** A workflow cannot enable Pages for you -- creating
+a Pages site needs repo-admin rights that `GITHUB_TOKEN` does not have at any
+permission level. The setting survives a repo rename; the published URL follows
+the new name.
 
 For a custom domain later: add a `CNAME` file, set `url:` to the domain, and set
 `baseurl: ""`.

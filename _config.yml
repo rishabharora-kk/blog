@@ -5,16 +5,15 @@ description: >-
   thinking clearly — written to be verified, not admired.
 
 url: "https://rishabharora-kk.github.io"
-# This is a PROJECT repo (rishabharora-kk/kiki.github.io), not a user site --
-# a user site must be named exactly <username>.github.io. So the site serves
-# under a subpath and baseurl must match the repo name exactly.
+# This is a PROJECT repo (rishabharora-kk/blog), not a user site -- a user site
+# must be named exactly <username>.github.io. So the site serves under a subpath
+# and baseurl must match the repo name exactly.
 #
-#   rename repo to rishabharora-kk.github.io  ->  baseurl: ""
-#   rename repo to kiki                       ->  baseurl: "/kiki"
-#   custom domain                             ->  baseurl: "", set url:, add CNAME
+#   repo renamed          ->  baseurl: "/<new name>", in the same commit
+#   custom domain         ->  baseurl: "", set url:, add a CNAME file
 #
-# Get this wrong and every link and stylesheet on the site 404s.
-baseurl: "/kiki.github.io"
+# Get this wrong and every link and stylesheet on the site 404s, silently.
+baseurl: "/blog"
 
 author:
   name: Rishabh Arora
