@@ -1,16 +1,27 @@
 /* ---------------------------------------------------------------
    Austere long-form. No frameworks, no webfonts, no build step.
    One column, generous measure, high contrast, theme-aware.
+
+   The palette is warm on purpose. Paper, not screen: an ivory
+   ground and a warm near-black, because maximum contrast (#000 on
+   #fff) causes halation and fatigue on bright displays. Every
+   foreground/background pair here is measured at WCAG AA or better
+   in both themes -- including the faint tones, which is the pair
+   most often left failing.
    --------------------------------------------------------------- */
 
 :root {
-  --ink:        #16150f;
-  --ink-soft:   #5d5a4e;
-  --ink-faint:  #8b8779;
-  --paper:      #fbfaf6;
-  --rule:       #dedbd0;
-  --accent:     #7a3b1d;
-  --mark:       #f3edd8;
+  color-scheme: light;
+
+  --paper:      #f4f1e8;   /* the page itself */
+  --raised:     #e9e4d6;   /* code, table zebra, marks */
+  --ink:        #1f1d18;   /* 14.9:1 on paper  AAA */
+  --ink-soft:   #575347;   /*  6.8:1 on paper  AA  */
+  --ink-faint:  #6b6555;   /*  5.1:1 on paper, 4.6:1 on raised  AA */
+  --rule:       #dcd6c6;
+  --rule-soft:  #e6e0d0;
+  --accent:     #9c4320;   /*  5.1:1 on raised  AA */
+  --mark:       #ece5d0;
 
   --serif: Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype",
            Palatino, Georgia, "Times New Roman", serif;
@@ -20,21 +31,43 @@
   --measure: 40rem;
 }
 
+/* Dark is not an inversion -- it is a warm charcoal with the same
+   temperature as the light theme, so the site reads as one place. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --ink:       #e8e4d8;
-    --ink-soft:  #a8a394;
-    --ink-faint: #78736a;
-    --paper:     #14140f;
-    --rule:      #302f28;
-    --accent:    #d99a6c;
-    --mark:      #2a2618;
+    color-scheme: dark;
+    --paper:     #191814;
+    --raised:    #232119;
+    --ink:       #ebe7da;   /* 14.4:1  AAA */
+    --ink-soft:  #a9a294;   /*  7.0:1  AAA */
+    --ink-faint: #948d7d;   /*  5.4:1 on paper, 4.9:1 on raised  AA */
+    --rule:      #333027;
+    --rule-soft: #2a2820;
+    --accent:    #e2966a;   /*  7.5:1  AAA */
+    --mark:      #2c281c;
   }
+}
+
+/* Explicit override, so a future toggle wins in both directions. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper:     #191814;
+  --raised:    #232119;
+  --ink:       #ebe7da;
+  --ink-soft:  #a9a294;
+  --ink-faint: #948d7d;
+  --rule:      #333027;
+  --rule-soft: #2a2820;
+  --accent:    #e2966a;
+  --mark:      #2c281c;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--paper);   /* no white flash behind a short page */
+}
 
 body {
   margin: 0;
@@ -42,18 +75,28 @@ body {
   color: var(--ink);
   font-family: var(--serif);
   font-size: 1.125rem;
-  line-height: 1.66;
+  line-height: 1.7;
   font-kerning: normal;
   font-variant-numeric: oldstyle-num;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
+::selection { background: var(--mark); color: var(--ink); }
+
 .wrap {
   max-width: var(--measure);
   margin: 0 auto;
-  padding-block: 4rem 6rem;
+  padding-block: 5rem 7rem;
   padding-inline: 1.5rem;
+}
+
+/* Keyboard users get a real focus ring. Never remove this without
+   putting something equally visible in its place. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* --- links ---------------------------------------------------- */
@@ -64,21 +107,22 @@ a {
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
   text-decoration-color: var(--rule);
-  transition: text-decoration-color 120ms ease, color 120ms ease;
+  transition: text-decoration-color 140ms ease, color 140ms ease;
 }
 a:hover { color: var(--accent); text-decoration-color: currentColor; }
 
 /* --- masthead ------------------------------------------------- */
 
-.masthead { margin-bottom: 3rem; }
+.masthead { margin-bottom: 3.75rem; }
 
 .masthead h1 {
   font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.4rem;
 }
 .masthead h1 a { text-decoration: none; }
+.masthead h1 a:hover { color: var(--accent); }
 
 .masthead .tagline {
   margin: 0;
@@ -87,13 +131,13 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
   font-size: 1.0625rem;
 }
 
-.bio { color: var(--ink-soft); font-size: 1.0625rem; }
-.bio p { margin: 0 0 0.85rem; }
+.bio { color: var(--ink-soft); font-size: 1.0625rem; line-height: 1.68; }
+.bio p { margin: 0 0 0.9rem; }
 .bio p:last-child { margin-bottom: 0; }
 
 /* --- index listing -------------------------------------------- */
 
-.section { margin-top: 3.25rem; }
+.section { margin-top: 3.75rem; }
 
 .section > h2 {
   font-size: 0.8125rem;
@@ -102,57 +146,72 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
   letter-spacing: 0.11em;
   font-variant-numeric: normal;
   color: var(--ink-faint);
-  margin: 0 0 1.25rem;
-  padding-bottom: 0.5rem;
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.55rem;
   border-bottom: 1px solid var(--rule);
 }
 
 .entries { list-style: none; margin: 0; padding: 0; }
 
-.entries li { margin-bottom: 1.5rem; }
+.entries li {
+  margin-bottom: 2.25rem;
+  /* A quiet hit area, so the whole entry feels like one object
+     rather than three separate scraps of text. */
+  padding: 0.15rem 0;
+}
 .entries li:last-child { margin-bottom: 0; }
 
 .entry-title {
   display: block;
-  font-size: 1.1875rem;
+  font-size: 1.25rem;
+  font-weight: 600;
   text-decoration: none;
-  line-height: 1.35;
+  line-height: 1.32;
+  letter-spacing: -0.008em;
 }
 .entry-title:hover { color: var(--accent); }
 
 .entry-meta {
   display: block;
-  margin-top: 0.2rem;
+  margin-top: 0.3rem;
   font-size: 0.9375rem;
   color: var(--ink-faint);
+  line-height: 1.5;
 }
 
 .entry-summary {
-  margin: 0.4rem 0 0;
+  margin: 0.55rem 0 0;
   font-size: 1.0625rem;
   color: var(--ink-soft);
+  line-height: 1.62;
 }
 
 .empty { color: var(--ink-faint); font-style: italic; }
 
 /* --- post ----------------------------------------------------- */
 
-.post-header { margin-bottom: 2.75rem; }
+.post-header {
+  margin-bottom: 3.25rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
 
 .post-header h1 {
-  font-size: 2rem;
+  font-size: 2.125rem;
   font-weight: 600;
-  line-height: 1.18;
-  letter-spacing: -0.015em;
-  margin: 0 0 0.6rem;
+  line-height: 1.16;
+  letter-spacing: -0.018em;
+  margin: 0 0 0.7rem;
+  text-wrap: balance;
 }
 
 .post-header .subtitle {
-  margin: 0 0 0.9rem;
+  margin: 0 0 1rem;
   font-size: 1.1875rem;
   font-style: italic;
   color: var(--ink-soft);
-  line-height: 1.45;
+  line-height: 1.5;
+  text-wrap: pretty;
 }
 
 .post-header .dateline {
@@ -164,41 +223,44 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
 .prose > :first-child { margin-top: 0; }
 
 .prose h2 {
-  font-size: 1.375rem;
+  font-size: 1.4375rem;
   font-weight: 600;
-  line-height: 1.3;
-  margin: 3rem 0 1rem;
-  letter-spacing: -0.01em;
+  line-height: 1.28;
+  margin: 3.5rem 0 1.1rem;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
 }
 .prose h3 {
   font-size: 1.125rem;
   font-weight: 600;
-  margin: 2.25rem 0 0.75rem;
+  margin: 2.5rem 0 0.8rem;
+  text-wrap: balance;
 }
 .prose h4 {
   font-size: 1rem;
   font-weight: 600;
   font-style: italic;
-  margin: 1.75rem 0 0.5rem;
+  margin: 2rem 0 0.55rem;
 }
 
-.prose p { margin: 0 0 1.25rem; }
+.prose p { margin: 0 0 1.35rem; text-wrap: pretty; }
 
-.prose ul, .prose ol { margin: 0 0 1.35rem; padding-left: 1.45rem; }
-.prose li { margin-bottom: 0.5rem; }
-.prose li > ul, .prose li > ol { margin-top: 0.5rem; margin-bottom: 0.25rem; }
+.prose ul, .prose ol { margin: 0 0 1.45rem; padding-left: 1.45rem; }
+.prose li { margin-bottom: 0.6rem; }
+.prose li > ul, .prose li > ol { margin-top: 0.6rem; margin-bottom: 0.25rem; }
+.prose li::marker { color: var(--ink-faint); }
 
 .prose strong { font-weight: 650; }
 
 .prose hr {
   border: 0;
   border-top: 1px solid var(--rule);
-  margin: 3rem 0;
+  margin: 3.5rem 0;
 }
 
 .prose blockquote {
-  margin: 1.75rem 0;
-  padding: 0 0 0 1.25rem;
+  margin: 2rem 0;
+  padding: 0.15rem 0 0.15rem 1.4rem;
   border-left: 2px solid var(--accent);
   color: var(--ink);
   font-style: italic;
@@ -219,22 +281,22 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
   font-size: 0.875em;
   font-variant-numeric: normal;
   background: var(--mark);
-  padding: 0.1em 0.32em;
-  border-radius: 3px;
+  padding: 0.12em 0.34em;
+  border-radius: 4px;
 }
 .prose .highlighter-rouge,
-.prose .highlight { margin: 1.75rem 0; }
+.prose .highlight { margin: 2rem 0; }
 .prose .highlighter-rouge pre,
 .prose .highlight pre { margin: 0; }
 
 .prose pre {
-  background: var(--mark);
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  padding: 1rem 1.15rem;
-  margin: 1.75rem 0;
+  background: var(--raised);
+  border: 1px solid var(--rule-soft);
+  border-radius: 8px;
+  padding: 1.15rem 1.3rem;
+  margin: 2rem 0;
   overflow-x: auto;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 .prose pre code {
   background: none;
@@ -244,19 +306,26 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
 }
 
 /* tables — the one thing allowed to be wider than the measure */
-.prose .table-scroll { overflow-x: auto; margin: 1.75rem 0; }
+.prose .table-scroll {
+  overflow-x: auto;
+  margin: 2rem 0;
+  /* Tables are the one place the page can scroll sideways; make the
+     edge legible so it reads as scrollable rather than as cut off. */
+  border-bottom: 1px solid var(--rule-soft);
+}
 .prose table {
   border-collapse: collapse;
   width: 100%;
   font-size: 0.9375rem;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 .prose th, .prose td {
   text-align: left;
   vertical-align: top;
-  padding: 0.6rem 0.9rem 0.6rem 0;
-  border-bottom: 1px solid var(--rule);
+  padding: 0.7rem 1rem 0.7rem 0;
+  border-bottom: 1px solid var(--rule-soft);
 }
+.prose tbody tr:last-child td { border-bottom: 0; }
 .prose th {
   font-weight: 600;
   font-size: 0.8125rem;
@@ -264,15 +333,16 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
   letter-spacing: 0.07em;
   font-variant-numeric: normal;
   color: var(--ink-faint);
-  border-bottom-color: var(--ink-faint);
+  border-bottom-color: var(--rule);
+  padding-top: 0;
 }
 .prose td:last-child, .prose th:last-child { padding-right: 0; }
 
 /* --- footer --------------------------------------------------- */
 
 .foot {
-  margin-top: 5rem;
-  padding-top: 1.25rem;
+  margin-top: 6rem;
+  padding-top: 1.4rem;
   border-top: 1px solid var(--rule);
   font-size: 0.9375rem;
   color: var(--ink-faint);
@@ -287,16 +357,38 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
 
 @media (max-width: 34rem) {
   body { font-size: 1.0625rem; }
-  .wrap { padding-block: 2.5rem 4rem; }
-  .post-header h1 { font-size: 1.625rem; }
-  .prose h2 { font-size: 1.25rem; margin-top: 2.5rem; }
+  .wrap { padding-block: 3rem 4.5rem; padding-inline: 1.25rem; }
+  .masthead { margin-bottom: 2.75rem; }
+  .post-header h1 { font-size: 1.6875rem; }
+  .post-header { margin-bottom: 2.5rem; padding-bottom: 1.5rem; }
+  .prose h2 { font-size: 1.3125rem; margin-top: 2.75rem; }
+  .entries li { margin-bottom: 1.85rem; }
+  .prose pre { border-radius: 6px; padding: 1rem; }
+}
+
+/* --- motion --------------------------------------------------- */
+
+/* The reader has already told the browser how they want to read. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* --- print ---------------------------------------------------- */
 
 @media print {
-  :root { --paper: #fff; --ink: #000; --ink-soft: #333; --mark: #f4f4f4; }
+  :root {
+    --paper: #fff; --raised: #f6f6f6; --ink: #000;
+    --ink-soft: #333; --ink-faint: #444;
+    --rule: #bbb; --rule-soft: #ddd; --mark: #f4f4f4;
+  }
   .foot, .masthead .tagline { display: none; }
-  .wrap { max-width: none; }
+  .wrap { max-width: none; padding-block: 0; }
   a { text-decoration: none; }
+  .prose pre, .prose .table-scroll { break-inside: avoid; }
+  .prose h2, .prose h3 { break-after: avoid; }
 }
