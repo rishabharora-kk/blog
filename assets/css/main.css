@@ -392,3 +392,24 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
   .prose pre, .prose .table-scroll { break-inside: avoid; }
   .prose h2, .prose h3 { break-after: avoid; }
 }
+
+/* --- colophon -------------------------------------------------- */
+
+/* Provenance, on every post. A reader arriving from a direct link never
+   sees the index, so the disclosure has to travel with the piece. */
+.colophon {
+  margin-top: 4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule-soft);
+}
+.colophon p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+.colophon a { color: inherit; }
+.colophon a:hover { color: var(--accent); }
+
+@media print { .colophon { font-style: normal; } }
